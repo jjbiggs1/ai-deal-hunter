@@ -2,13 +2,9 @@ import streamlit as st
 import openai
 import requests
 
-# 🔑 Keys
-import streamlit as st
+# 🔑 API Keys
 openai.api_key = st.secrets["OPENAI_KEY"]
 serpapi_key = st.secrets["SERPAPI_KEY"]
-
-
-openai.api_key = openai_key
 
 # 🔍 Search Function
 def fetch_products(query):
@@ -37,11 +33,10 @@ Output the top 3 with pros and cons, and include the product links.
 Products:
 {products}
     """
-   response = openai.ChatCompletion.create(
-     model="gpt-4",
-     messages=[{"role": "user", "content": prompt}]
-)
-
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": prompt}]
+    )
     return response.choices[0].message.content
 
 # 🎨 Streamlit UI
